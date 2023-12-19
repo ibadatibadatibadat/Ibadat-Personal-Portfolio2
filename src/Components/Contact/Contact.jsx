@@ -4,6 +4,10 @@ import walmart from "../../assets/walmart.png";
 import adobe from "../../assets/adobe.png";
 import microsoft from "../../assets/microsoft.png";
 import facebook from "../../assets/facebook.png";
+import facebookIcon from "../../assets/facebook-icon.png";
+import twitterIcon from "../../assets/twitter.png";
+import youtubeIcon from "../../assets/youtube.png";
+import instagramIcon from "../../assets/instagram.png";
 
 const Contact = () => {
   return (
@@ -21,7 +25,31 @@ const Contact = () => {
           <img className="clientImg" src={facebook} alt="" />
         </div>
       </div>
-      <div className="contactPage"></div>
+      <div className="contact">
+        <h1 className="contactPageTitle">Contact Me</h1>
+        <span className="contactDesc">
+          Please Fill Out The Form Below To Discuss Any Work Opportunities
+        </span>
+        <form className="contactForm">
+          <input type="text" className="name" placeholder="Your Name" />
+          <input type="email" className="email" placeholder="Your Email" />
+          <textarea
+            name="message"
+            rows="5"
+            className="msg"
+            placeholder="Your Message"
+          ></textarea>
+          <button className="submitBtn" type="submit" value="send">
+            Submit
+          </button>
+          <div className="links">
+            <img src={facebookIcon} alt="facebook" className="link" />
+            <img src={twitterIcon} alt="twitter" className="link" />
+            <img src={youtubeIcon} alt="youtube" className="link" />
+            <img src={instagramIcon} alt="instagram" className="link" />
+          </div>
+        </form>
+      </div>
     </section>
   );
 };
