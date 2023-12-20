@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./contact.css";
 import walmart from "../../assets/walmart.png";
 import adobe from "../../assets/adobe.png";
@@ -8,8 +8,30 @@ import facebookIcon from "../../assets/facebook-icon.png";
 import twitterIcon from "../../assets/twitter.png";
 import youtubeIcon from "../../assets/youtube.png";
 import instagramIcon from "../../assets/instagram.png";
+import emailjs, { send } from "@emailjs/browser";
 
 const Contact = () => {
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_tv3rlxl",
+        "template_goc3p9w",
+        form.current,
+        "fGXaUaK4tp7t9vRbU2amU"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          e.target.reset();
+          alert("Email Sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
   return (
     <section className="contactPage">
       <div className="clients">
@@ -30,16 +52,26 @@ const Contact = () => {
         <span className="contactDesc">
           Please Fill Out The Form Below To Discuss Any Work Opportunities
         </span>
-        <form className="contactForm">
-          <input type="text" className="name" placeholder="Your Name" />
-          <input type="email" className="email" placeholder="Your Email" />
+        <form className="contactForm" ref={form} onSubmit={sendEmail}>
+          <input
+            type="text"
+            className="name"
+            placeholder="Your Name"
+            name="your_name"
+          />
+          <input
+            type="email"
+            className="email"
+            placeholder="Your Email"
+            name="your_email"
+          />
           <textarea
             name="message"
             rows="5"
             className="msg"
             placeholder="Your Message"
           ></textarea>
-          <button className="submitBtn" type="submit" value="send">
+          <button className="submitBtn" type="submit" value="send" onClick={sendEmail} >
             Submit
           </button>
           <div className="links">
